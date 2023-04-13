@@ -1,0 +1,60 @@
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-center-column {
+    @include flex-center;
+    flex-direction: column;
+}
+
+@mixin flex-center-vert {
+    display: flex;
+    align-items: center;
+}
+
+@mixin flex-center-horiz {
+    display: flex;
+    justify-content: center;
+}
+@mixin border-radius($radius: 30px) {
+    border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+}
+@mixin center {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+@mixin defaultButton {
+    width: 8.1rem;
+    height: 3.5rem;
+    @include border-radius;
+
+    background-color: transparent;
+    color: $primary-color;
+    text-transform: capitalize;
+    font-size: 1rem;
+    border: 1px solid $primary-color;
+
+    cursor: pointer;
+    transition: 0.7s;
+
+    &:hover {
+        animation: rotate 0.7s ease-in-out both;
+        transition: 0.7s;
+        color: $secondary-color;
+        background-color: $primary-color;
+    }
+}
