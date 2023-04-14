@@ -11,19 +11,22 @@ $background-color: #1d1d1d;
     margin: 0 auto;
 }
 
-.defaultBtn{
-  @include defaultButton;
+.defaultBtn {
+    @include defaultButton;
 }
 
 #header {
     @include flex-center;
     height: 10.2vh;
     width: 100%;
-    margin-bottom: 3rem;
-    background-color: transparent;
-    position: relative;
+    background-color: $background-color;
+    position: fixed;
+    top: 0;
+    .boxHeader{
+        @include flex-center;
+        justify-content: space-between;
 
-    .logoHeader {
+        .logoHeader {
         // -webkit-filter:grayscale(0%);
         transition: 1s;
 
@@ -48,8 +51,10 @@ $background-color: #1d1d1d;
                 color: #fff;
             }
         }
-        
     }
+
+    }
+    
 }
 @keyframes rotate {
     0% {
@@ -69,47 +74,72 @@ $background-color: #1d1d1d;
     }
 }
 // ------------------------------------------------------------- HEADER ------------------------------------------------------------------------------------------
-.backText {
-    font-size: 11.5rem;
-    line-height: 10.5rem;
-    text-align: end;
-    text-transform: capitalize;
-    color: rgba(0, 0, 0, 0.4);
-    position: absolute;
-    top: 0px;
+
+.backTextWeb {
+    @include backText;
+    top: 10.2vh;
     left: 31vw;
-    z-index: -1;
+}
+.backTextAbout {
+    @include backText;
+    top: 1130px;
+    left: 0;
 }
 .main {
     @include flex-center-column;
-    justify-content: space-between;
-    height: 81vh;
-
-    .backLanguages{
-        position: absolute;
-        top: 100px;
-        left: 0px;
-
-    }
-    .boxTop {
+    margin-top: 15.2vh;
+    
+    .introSection {
         @include flex-center-column;
-        gap: 2rem;
+        justify-content: space-between;
+        height: 81vh;
+        margin-bottom: 16rem;
 
-        .title {
-            font-weight: 700;
-            font-size: 3.5rem;
-            text-transform: capitalize;
-            color: $secondary-color;
+        .backLanguages {
+            position: absolute;
+            top: 100px;
+            left: 0px;
         }
+        .boxTop {
+            @include flex-center-column;
+            gap: 2rem;
 
-        .myDescription {
-            font-size: 1.25rem;
-            color: $secondary-color;
-        }
-        .avatar {
-            margin-top: 2rem;
-            height: 12.5rem;
-            width: 12.5rem;
+            .title {
+                font-weight: 700;
+                font-size: 3.5rem;
+                text-transform: capitalize;
+                color: $secondary-color;
+            }
+
+            .myDescription {
+                font-size: 1.25rem;
+                color: $secondary-color;
+            }
+            .avatar {
+                margin-top: 2rem;
+                height: 12.5rem;
+                width: 12.5rem;
+            }
         }
     }
+
+    .aboutMeSection{
+        display: flex;
+        justify-content: space-between;
+
+        .aboutLeft{
+            @include flex-column;
+            justify-content: start;
+            width: 33%;
+            // align-items: start;
+            .paragraphAbout{
+                font-size: 1.25rem;
+                color: $secondary-color;
+                text-align: justify;
+                margin-top: 1rem;
+            }
+            
+        }
+    }
+
 }
