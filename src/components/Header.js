@@ -21,8 +21,8 @@ export default function Home() {
       <div className={`${styles.container} ${styles.boxHeader}`}>
       <Image src={Logo} className={styles.logoHeader} alt='Logo'/>
         <nav className={styles.navHeader}>
-            <Link className={`${styles.linkHeader} ${mitrR.className}`} href=''>about me</Link>
-            <Link className={`${styles.linkHeader} ${mitrR.className}`} href=''>portfolio</Link>
+            <Link className={`${styles.linkHeader} ${mitrR.className}`} href='#scroll1'>about me</Link>
+            <Link className={`${styles.linkHeader} ${mitrR.className}`} href='#scroll2'>portfolio</Link>
             <Image src={IconTranslate} alt='Icon Translate'/>
             <button className={`${styles.defaultBtn} ${mitrR.className}`}>contact me</button>
         </nav>
