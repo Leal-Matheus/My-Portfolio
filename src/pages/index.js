@@ -3,12 +3,18 @@ import Image from 'next/image';
 import { Inter, Mitr, Montserrat_Alternates } from 'next/font/google';
 import Script from 'next/script'
 import Avatar from '../assets/img/Avatar.png';
+import Github from '../assets/img/Github.png';
+import GithubAzul from '../assets/img/GithubAzul.png';
+import Linkedin from '../assets/img/Linkedin.png'
+import LinkedinAzul from '../assets/img/LinkedinAzul.png'
 // import Digibank from '../assets/img/digibankPort.png';
 import backLanguages from '../assets/img/backLanguages.png';
 import styles from '@/assets/styles/home.module.scss';
 import Header from '../components/Header';
 import TextShpere from '@/components/TextShpere';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { sendContactForm } from '@/lib/api';
 
 // const inter = Inter({ subsets: ['latin'] })
 const mitrR = Mitr({
@@ -28,7 +34,48 @@ const montserratH2 = Montserrat_Alternates({
   subsets: ['latin'] 
 })
 
+const initValues = { name: "",
+email: "",
+subject: "",
+message: "",
+}
+
+const initState = {values: initValues} 
+
 export default function Home() {
+  const [state, setState] = useState(initState);
+
+  const {values, isLoading, error} = state;
+
+  const handleChange = ({target}) => 
+    setState((prev) =>({
+      ...prev,
+      values: {
+        ...prev.values,
+        [target.name]: target.value
+      },
+}))
+
+  const onSubmit = async () => {
+    setState((...prev) => ({
+      ...prev,
+      isLoading: true
+    }));
+
+    try {
+      await sendContactForm(values);
+      setState(initState)
+      
+    } catch (error) {
+      setState((...prev) => ({
+        ...prev,
+        isLoading: false,
+        error:error.message,
+      }));
+  
+    }
+  }
+
   useEffect(() => {
     let constrain = 20;
     let mouseOverContainer = document.getElementById("ex1");
@@ -77,7 +124,7 @@ export default function Home() {
             <p className={`${styles.myDescription} ${mitrR.className}`}>An Eternal Apprentice, Always Looking to Improve With Creativity</p>
             <Image id='ex1-layer' className={styles.avatar} src={Avatar} alt='Avatar' />
           </div>
-          <button className={`${styles.defaultBtn} ${mitrR.className}`}>view more</button>
+          <a href='#scroll1' className={`${styles.defaultBtn} ${mitrR.className}`}>view more</a>
         </section>
         <section className={`${styles.aboutMeSection} ${styles.anime}`} id='scroll1'>
           <p className={`${styles.backTextAbout} ${mitrSB.className}`}>About</p>
@@ -111,6 +158,43 @@ export default function Home() {
             <div className={styles.cardProject}>
               {/* <Image src={Digibank} alt='digibank portfolio' /> */}
             </div>
+          </div>
+        </section>
+        <section className={styles.contactSection} id='scroll3'>
+          <p className={`${styles.backTextContact} ${mitrSB.className}`}>contact</p>
+          <div className={styles.leftContact}>
+            <h2 className={`${styles.titleContact} ${montserratH2.className}`}>contact me</h2>
+            <form className={styles.formArea}>
+              <div className={styles.nameEmail}>
+                <div className={styles.orgInput}>
+                  <label className={mitrR.className}>name</label>
+                  <input 
+                  type="text" 
+                  name='name' 
+                  className={styles.smallInput} 
+                  value={values.name} 
+                  onChange={handleChange}></input>
+                </div>
+                <div className={styles.orgInput}>
+                  <label className={mitrR.className}>email</label>
+                  <input type="text" name='email' className={styles.smallInput} value={values.email} 
+                  onChange={handleChange}></input>
+                </div>
+              </div>
+              <label className={mitrR.className}>subject</label>
+              <input type="text" name='subject' className={styles.largeInput} value={values.subject} 
+                  onChange={handleChange}></input>
+              <label className={mitrR.className}>message</label>
+              <textarea name='message' className={styles.textAreaContact} value={values.message} 
+                  onChange={handleChange}></textarea>
+              <button  className={styles.btnSend}>send message</button>
+            </form>
+          </div>
+          <div className={styles.rightContact}>
+            <Link className={styles.bottomGithub} href="https://github.com/Leal-Matheus"><Image src={Github} alt="github logo"/></Link>
+            <Link className={styles.topGithub} href="https://github.com/Leal-Matheus"><Image src={GithubAzul} alt="github logo"/></Link>
+            <Link className={styles.bottomLinkedin} href="https://www.linkedin.com/in/matheus-leal-palmuti-b94009240/"><Image src={Linkedin} alt="linkedin logo"/></Link>
+            <Link className={styles.topLinkedin} href="https://www.linkedin.com/in/matheus-leal-palmuti-b94009240/"><Image src={LinkedinAzul} alt="linkedin logo"/></Link>
           </div>
         </section>
       </main>

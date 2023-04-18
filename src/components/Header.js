@@ -24,7 +24,7 @@ export default function Home() {
             <Link className={`${styles.linkHeader} ${mitrR.className}`} href='#scroll1'>about me</Link>
             <Link className={`${styles.linkHeader} ${mitrR.className}`} href='#scroll2'>portfolio</Link>
             <Image src={IconTranslate} alt='Icon Translate'/>
-            <button className={`${styles.defaultBtn} ${mitrR.className}`}>contact me</button>
+            <a href='#scroll3' className={`${styles.defaultBtn} ${mitrR.className}`}>contact me</a>
         </nav>
       </div>
     </header>
