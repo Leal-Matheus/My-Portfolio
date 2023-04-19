@@ -15,6 +15,8 @@ import TextShpere from '@/components/TextShpere';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { sendContactForm } from '@/lib/api';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // const inter = Inter({ subsets: ['latin'] })
 const mitrR = Mitr({
@@ -34,43 +36,40 @@ const montserratH2 = Montserrat_Alternates({
   subsets: ['latin'] 
 })
 
-const initValues = { name: "",
-email: "",
-subject: "",
-message: "",
-}
+const initValues = { name: "", email: "", subject: "", message: "" };
 
-const initState = {values: initValues} 
+const initState = { values: initValues };
 
 export default function Home() {
   const [state, setState] = useState(initState);
-
-  const {values, isLoading, error} = state;
+  const notify = () => toast("Message Sent!");  
+  const {values,} = state;
 
   const handleChange = ({target}) => 
     setState((prev) =>({
       ...prev,
       values: {
         ...prev.values,
-        [target.name]: target.value
+        [target.name]: target.value,
       },
 }))
 
-  const onSubmit = async () => {
-    setState((...prev) => ({
+  const onSubmit = async (event) => {
+    setState((prev) => ({
       ...prev,
-      isLoading: true
     }));
 
     try {
       await sendContactForm(values);
+      event.preventDefault()
+      
+      console.log("Botão Clicado!")
       setState(initState)
       
     } catch (error) {
-      setState((...prev) => ({
+      setState((prev) => ({
         ...prev,
-        isLoading: false,
-        error:error.message,
+        error: error.message,
       }));
   
     }
@@ -81,28 +80,28 @@ export default function Home() {
     let mouseOverContainer = document.getElementById("ex1");
     let ex1Layer = document.getElementById("ex1-layer");
   
-  function transforms(x, y, el) {
-      let avatar = el.getBoundingClientRect();
-      let calcX = -(y - avatar.y - (avatar.height / 2)) / constrain;
-      let calcY = (x - avatar.x - (avatar.width / 2)) / constrain;
+    function transforms(x, y, el) {
+        let avatar = el.getBoundingClientRect();
+        let calcX = -(y - avatar.y - (avatar.height / 2)) / constrain;
+        let calcY = (x - avatar.x - (avatar.width / 2)) / constrain;
+      
+        return "perspective(100px) "
+          + "   rotateX("+ calcX +"deg) "
+          + "   rotateY("+ calcY +"deg) ";
+    };
     
-      return "perspective(100px) "
-        + "   rotateX("+ calcX +"deg) "
-        + "   rotateY("+ calcY +"deg) ";
-  };
-  
-  function transformElement(el, xyEl) {
-      el.style.transform  = transforms.apply(null, xyEl);
-  }
-  
-  mouseOverContainer.onmousemove = function(e) {
-      let xy = [e.clientX, e.clientY];
-      let position = xy.concat([ex1Layer]);
-  
-      window.requestAnimationFrame(function(){
-        transformElement(ex1Layer, position);
-      });
-  };
+    function transformElement(el, xyEl) {
+        el.style.transform  = transforms.apply(null, xyEl);
+    }
+    
+    mouseOverContainer.onmousemove = function(e) {
+        let xy = [e.clientX, e.clientY];
+        let position = xy.concat([ex1Layer]);
+    
+        window.requestAnimationFrame(function(){
+          transformElement(ex1Layer, position);
+        });
+    };
   })
   return (
     <>
@@ -116,7 +115,19 @@ export default function Home() {
       <Header/>
       <p className={`${styles.backTextWeb} ${mitrSB.className}`}>web developer</p>
       <main className={`${styles.main} ${styles.container} 'scrollspy-example'`} data-bs-spy="scroll" data-bs-target="#redirect"
-        data-bs-offset="0" data-bs-smooth-scroll="true" tabindex="0" >
+        data-bs-offset="0" data-bs-smooth-scroll="true" tabIndex="0" >
+          <ToastContainer
+            position="top-right"
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+          />
         <section className={styles.introSection}>
           <Image className={styles.backLanguages} src={backLanguages} alt='Languages Background' />
           <div id='ex1' className={styles.boxTop}>
@@ -177,7 +188,7 @@ export default function Home() {
                 </div>
                 <div className={styles.orgInput}>
                   <label className={mitrR.className}>email</label>
-                  <input type="text" name='email' className={styles.smallInput} value={values.email} 
+                  <input type="email" name='email' className={styles.smallInput} value={values.email} 
                   onChange={handleChange}></input>
                 </div>
               </div>
@@ -187,7 +198,7 @@ export default function Home() {
               <label className={mitrR.className}>message</label>
               <textarea name='message' className={styles.textAreaContact} value={values.message} 
                   onChange={handleChange}></textarea>
-              <button  className={styles.btnSend}>send message</button>
+              <button  className={styles.btnSend} onClick={onSubmit} type="submit">submit</button>
             </form>
           </div>
           <div className={styles.rightContact}>

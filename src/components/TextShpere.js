@@ -26,7 +26,7 @@ const TextShpere = () => {
         'Python', 
         'Flask', 
         'Git',
-        'SSMS', 
+        'SQL Server', 
         'Node.js', 
         '.NET',
         'NextJs',

@@ -19,15 +19,11 @@
     font-weight: 600;
     letter-spacing: 0.0625em;
     font-size: 1.3em;
-    color: #5271ff;
+    color: #527CFF;
 }
 
 /* Change color of each text in sphere on hover   */
 .tagcloud--item {
-    color: #5271ff;
+    color: #527CFF;
     text-transform: uppercase;
-}
-
-.tagcloud--item:hover {
-    color: #ff6347;
 }
