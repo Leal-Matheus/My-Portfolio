@@ -7,6 +7,10 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
+  i18n: {
+    locales: ['pt-BR','en-US'],
+    defaultLocale: 'en-US',
+  }
 }
 
 module.exports = nextConfig

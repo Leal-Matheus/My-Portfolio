@@ -1,24 +1,26 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { Inter, Mitr, Montserrat_Alternates } from 'next/font/google';
-import Script from 'next/script'
+import { Mitr, Montserrat_Alternates } from 'next/font/google';
+// import Script from 'next/script'
 import Avatar from '../assets/img/Avatar.png';
 import Github from '../assets/img/Github.png';
 import GithubAzul from '../assets/img/GithubAzul.png';
 import Linkedin from '../assets/img/Linkedin.png'
 import LinkedinAzul from '../assets/img/LinkedinAzul.png'
-// import Digibank from '../assets/img/digibankPort.png';
 import backLanguages from '../assets/img/backLanguages.png';
 import styles from '@/assets/styles/home.module.scss';
 import Header from '../components/Header';
 import TextShpere from '@/components/TextShpere';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router'
+
 import Link from 'next/link';
 import { sendContactForm } from '@/lib/api';
 import { ToastContainer, toast } from 'react-toastify';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-// const inter = Inter({ subsets: ['latin'] })
 const mitrR = Mitr({
   weight: "400",
   subsets:['latin']
@@ -40,10 +42,62 @@ const initValues = { name: "", email: "", subject: "", message: "" };
 
 const initState = { values: initValues };
 
+ const enUS = {
+  about: "About",
+  aboutMe: "About Me",
+  textAbout1: "A full-stack developer always willing to learn more about this beautiful area of programming.",
+  textAbout2: "In search of my first big job, I took many courses and learned several programming languages",
+  home: "Home",
+  see: "View More",
+  project: "My Projects",
+  projectText: "To acquire knowledge in this area, I developed some projects alone and in  groups that simulated real problems.",
+  contact: "Contact",
+  contactMe: "Contact Me",
+  slogan: "An Eternal Apprentice, Always Looking to Improve With Creativity",
+  name: "Name",
+  subject: "Subject",
+  message: "Message",
+  submit: "Submit"
+}
+ const ptBR = {
+  about: "Sobre",
+  aboutMe: "Sobre Mim",
+  textAbout1: "Um desenvolvedor full-stack sempre buscando aprender mais sobre esta incrível área da programação.",
+  textAbout2: "Em busca do meu primeiro grande emprego ja desenvolvi alguns projetos e fiz alguns cursos para demonstrar minha capacidade.",
+  home: "Início",
+  see: "Veja Mais",
+  project: "Meus Projetos",
+  projectText: "Para adquirir e testar meu conhecimento com algumas linguagens de programação desenvolvi projetos sozinho e em grupos como estes:",
+  contact: "Contato",
+  contactMe: "Meu Contato",
+  slogan: "Um eterno Aprendiz, sempre buscando melhorar com criatividade",
+  name: "Nome",
+  subject: "Assunto",
+  message: "Mensagem",
+  submit: "Enviar"
+}
+
 export default function Home() {
   const [state, setState] = useState(initState);
-  const notify = () => toast("Message Sent!");  
+  const notify = () => toast("Message Sent!"); 
   const {values,} = state;
+  // código omitido
+  const router = useRouter();
+  const { locale, locales, defaultLocale, asPath } = useRouter();
+  const traducao = locale == "en-US" ? enUS : ptBR
+
+  const handleToggle = () => {
+    switch(locale){
+      case "pt-BR": 
+        router.push("/", "/", {locale:"en-US" }) 
+          reak;
+      case "en-US":
+        router.push("/", "/", {locale: "pt-BR"}) 
+        break; 
+      }
+   } 
+
+
 
   const handleChange = ({target}) => 
     setState((prev) =>({
@@ -54,14 +108,14 @@ export default function Home() {
       },
 }))
 
-  const onSubmit = async (event) => {
-    setState((prev) => ({
-      ...prev,
-    }));
-
-    try {
-      await sendContactForm(values);
-      event.preventDefault()
+const onSubmit = async () => {
+  setState((prev) => ({
+    ...prev,
+  }));
+  
+  try {
+    await sendContactForm(values);
+    notify();
       
       console.log("Botão Clicado!")
       setState(initState)
@@ -102,6 +156,17 @@ export default function Home() {
           transformElement(ex1Layer, position);
         });
     };
+
+    // ANIMATION
+    AOS.init({duration: 1000});
+
+    // FORM
+
+    const form = document.getElementById('formEmail')
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      console.log('Deu certo')
+    })
   })
   return (
     <>
@@ -113,12 +178,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
-      <p className={`${styles.backTextWeb} ${mitrSB.className}`}>web developer</p>
+      <p onClick={handleToggle} className={`${styles.backTextWeb} ${mitrSB.className}`}>web developer</p>
       <main className={`${styles.main} ${styles.container} 'scrollspy-example'`} data-bs-spy="scroll" data-bs-target="#redirect"
         data-bs-offset="0" data-bs-smooth-scroll="true" tabIndex="0" >
           <ToastContainer
             position="top-right"
-            autoClose={2000}
+            autoClose={5000}
             hideProgressBar={false}
             newestOnTop={false}
             closeOnClick
@@ -130,16 +195,16 @@ export default function Home() {
           />
         <section className={styles.introSection}>
           <Image className={styles.backLanguages} src={backLanguages} alt='Languages Background' />
-          <div id='ex1' className={styles.boxTop}>
+          <div data-aos="fade-down" id='ex1' className={styles.boxTop}>
             <h1 className={`${styles.title} ${montserrat.className}`}>frontend, backend & design</h1>
             <p className={`${styles.myDescription} ${mitrR.className}`}>An Eternal Apprentice, Always Looking to Improve With Creativity</p>
-            <Image id='ex1-layer' className={styles.avatar} src={Avatar} alt='Avatar' />
+            <Image id='ex1-layer'className={styles.avatar} src={Avatar} alt='Avatar' />
           </div>
-          <a href='#scroll1' className={`${styles.defaultBtn} ${mitrR.className}`}>view more</a>
+          <a href='#scroll1' data-aos="fade-up" className={`${styles.defaultBtn} ${mitrR.className}`}>view more</a>
         </section>
         <section className={`${styles.aboutMeSection} ${styles.anime}`} id='scroll1'>
-          <p className={`${styles.backTextAbout} ${mitrSB.className}`}>About</p>
-          <div className={styles.aboutLeft}>
+          <p className={`${styles.backTextAbout} ${mitrSB.className}`}> {traducao.about} </p>
+          <div data-aos="fade-up" className={styles.aboutLeft}>
             <h2 className={`${styles.titleAbout} ${montserratH2.className}`}>
               Hi,
             </h2>
@@ -149,17 +214,17 @@ export default function Home() {
             <p className={`${styles.paragraphAbout} ${mitrR.className}`}>A full-stack developer always willing to learn more about this beautiful area of ​​programming.</p>
             <p className={`${styles.paragraphAbout} ${mitrR.className}`}>In search of my first big job, I took many courses and learned several programming languages</p>
           </div>
-          <div className={styles.aboutRight}>
+          <div data-aos="fade-left  " className={styles.aboutRight}>
             <TextShpere />
           </div>
         </section>
-        <section className={styles.projectsSection} id='scroll2'>
-          <p className={`${styles.backTextProject} ${mitrSB.className}`}>portfolio</p>
-          <div className={styles.textsProjects}>
+        <section  className={styles.projectsSection} id='scroll2'>
+          <p data-aos="fade-right"className={`${styles.backTextProject} ${mitrSB.className}`}>portfolio</p>
+          <div data-aos="fade-right" className={styles.textsProjects}>
             <h2 className={`${styles.titleProject} ${montserratH2.className}`}>my projects</h2>
             <p className={`${styles.paragraphProjects} ${mitrR.className}`}>to acquire knowledge in this area, I developed some projects alone and in  groups that simulated real problems.</p>
           </div>
-          <div className={styles.myProjects}>
+          <div data-aos="fade-up"className={styles.myProjects}>
             <div className={styles.cardProject}>
               {/* <Image src={Digibank} alt='digibank portfolio' /> */}
             </div>
@@ -173,9 +238,9 @@ export default function Home() {
         </section>
         <section className={styles.contactSection} id='scroll3'>
           <p className={`${styles.backTextContact} ${mitrSB.className}`}>contact</p>
-          <div className={styles.leftContact}>
+          <div data-aos="fade-up" className={styles.leftContact}>
             <h2 className={`${styles.titleContact} ${montserratH2.className}`}>contact me</h2>
-            <form className={styles.formArea}>
+            <form id="formEmail" className={styles.formArea}>
               <div className={styles.nameEmail}>
                 <div className={styles.orgInput}>
                   <label className={mitrR.className}>name</label>
@@ -184,24 +249,24 @@ export default function Home() {
                   name='name' 
                   className={styles.smallInput} 
                   value={values.name} 
-                  onChange={handleChange}></input>
+                  onChange={handleChange} required></input>
                 </div>
                 <div className={styles.orgInput}>
                   <label className={mitrR.className}>email</label>
                   <input type="email" name='email' className={styles.smallInput} value={values.email} 
-                  onChange={handleChange}></input>
+                  onChange={handleChange} required></input>
                 </div>
               </div>
               <label className={mitrR.className}>subject</label>
               <input type="text" name='subject' className={styles.largeInput} value={values.subject} 
-                  onChange={handleChange}></input>
+                  onChange={handleChange} required></input>
               <label className={mitrR.className}>message</label>
               <textarea name='message' className={styles.textAreaContact} value={values.message} 
-                  onChange={handleChange}></textarea>
+                  onChange={handleChange} required></textarea>
               <button  className={styles.btnSend} onClick={onSubmit} type="submit">submit</button>
             </form>
           </div>
-          <div className={styles.rightContact}>
+          <div data-aos="fade-left" className={styles.rightContact}>
             <Link className={styles.bottomGithub} href="https://github.com/Leal-Matheus"><Image src={Github} alt="github logo"/></Link>
             <Link className={styles.topGithub} href="https://github.com/Leal-Matheus"><Image src={GithubAzul} alt="github logo"/></Link>
             <Link className={styles.bottomLinkedin} href="https://www.linkedin.com/in/matheus-leal-palmuti-b94009240/"><Image src={Linkedin} alt="linkedin logo"/></Link>
