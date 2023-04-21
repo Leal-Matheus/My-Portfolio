@@ -42,7 +42,7 @@ const initValues = { name: "", email: "", subject: "", message: "" };
 
 const initState = { values: initValues };
 
- const enUS = {
+const enUS = {
   about: "About",
   aboutMe: "About Me",
   textAbout1: "A full-stack developer always willing to learn more about this beautiful area of programming.",
@@ -57,9 +57,11 @@ const initState = { values: initValues };
   name: "Name",
   subject: "Subject",
   message: "Message",
-  submit: "Submit"
+  submit: "Submit",
+  hi: "Hi,",
+  matheus: "I'm Matheus",
 }
- const ptBR = {
+const ptBR = {
   about: "Sobre",
   aboutMe: "Sobre Mim",
   textAbout1: "Um desenvolvedor full-stack sempre buscando aprender mais sobre esta incrível área da programação.",
@@ -74,7 +76,9 @@ const initState = { values: initValues };
   name: "Nome",
   subject: "Assunto",
   message: "Mensagem",
-  submit: "Enviar"
+  submit: "Enviar",
+  hi: "Olá,",
+  matheus: "Eu sou o Matheus",
 }
 
 export default function Home() {
@@ -194,25 +198,25 @@ const onSubmit = async () => {
             theme="dark"
           />
         <section className={styles.introSection}>
-          <Image className={styles.backLanguages} src={backLanguages} alt='Languages Background' />
+          <Image className={styles.backLanguages}  src={backLanguages} alt='Languages Background' />
           <div data-aos="fade-down" id='ex1' className={styles.boxTop}>
             <h1 className={`${styles.title} ${montserrat.className}`}>frontend, backend & design</h1>
-            <p className={`${styles.myDescription} ${mitrR.className}`}>An Eternal Apprentice, Always Looking to Improve With Creativity</p>
+            <p className={`${styles.myDescription} ${mitrR.className}`}>{traducao.slogan}</p>
             <Image id='ex1-layer'className={styles.avatar} src={Avatar} alt='Avatar' />
           </div>
-          <a href='#scroll1' data-aos="fade-up" className={`${styles.defaultBtn} ${mitrR.className}`}>view more</a>
+          <a href='#scroll1' data-aos="fade-up" className={`${styles.defaultBtn} ${mitrR.className}`}>{traducao.see}</a>
         </section>
         <section className={`${styles.aboutMeSection} ${styles.anime}`} id='scroll1'>
           <p className={`${styles.backTextAbout} ${mitrSB.className}`}> {traducao.about} </p>
           <div data-aos="fade-up" className={styles.aboutLeft}>
             <h2 className={`${styles.titleAbout} ${montserratH2.className}`}>
-              Hi,
+              {traducao.hi}
             </h2>
             <h2 className={`${styles.titleAbout} ${montserratH2.className}`}>
-              I`m Matheus
+              {traducao.matheus}
             </h2>
-            <p className={`${styles.paragraphAbout} ${mitrR.className}`}>A full-stack developer always willing to learn more about this beautiful area of ​​programming.</p>
-            <p className={`${styles.paragraphAbout} ${mitrR.className}`}>In search of my first big job, I took many courses and learned several programming languages</p>
+            <p className={`${styles.paragraphAbout} ${mitrR.className}`}>{traducao.textAbout1}</p>
+            <p className={`${styles.paragraphAbout} ${mitrR.className}`}>{traducao.textAbout2}</p>
           </div>
           <div data-aos="fade-left  " className={styles.aboutRight}>
             <TextShpere />
@@ -221,8 +225,8 @@ const onSubmit = async () => {
         <section  className={styles.projectsSection} id='scroll2'>
           <p data-aos="fade-right"className={`${styles.backTextProject} ${mitrSB.className}`}>portfolio</p>
           <div data-aos="fade-right" className={styles.textsProjects}>
-            <h2 className={`${styles.titleProject} ${montserratH2.className}`}>my projects</h2>
-            <p className={`${styles.paragraphProjects} ${mitrR.className}`}>to acquire knowledge in this area, I developed some projects alone and in  groups that simulated real problems.</p>
+            <h2 className={`${styles.titleProject} ${montserratH2.className}`}>{traducao.project}</h2>
+            <p className={`${styles.paragraphProjects} ${mitrR.className}`}>{traducao.projectText}</p>
           </div>
           <div data-aos="fade-up"className={styles.myProjects}>
             <div className={styles.cardProject}>
@@ -237,13 +241,13 @@ const onSubmit = async () => {
           </div>
         </section>
         <section className={styles.contactSection} id='scroll3'>
-          <p className={`${styles.backTextContact} ${mitrSB.className}`}>contact</p>
+          <p className={`${styles.backTextContact} ${mitrSB.className}`}>{traducao.contact}</p>
           <div data-aos="fade-up" className={styles.leftContact}>
-            <h2 className={`${styles.titleContact} ${montserratH2.className}`}>contact me</h2>
+            <h2 className={`${styles.titleContact} ${montserratH2.className}`}>{traducao.contactMe}</h2>
             <form id="formEmail" className={styles.formArea}>
               <div className={styles.nameEmail}>
                 <div className={styles.orgInput}>
-                  <label className={mitrR.className}>name</label>
+                  <label className={mitrR.className}>{traducao.name}</label>
                   <input 
                   type="text" 
                   name='name' 
@@ -257,13 +261,13 @@ const onSubmit = async () => {
                   onChange={handleChange} required></input>
                 </div>
               </div>
-              <label className={mitrR.className}>subject</label>
+              <label className={mitrR.className}>{traducao.subject}</label>
               <input type="text" name='subject' className={styles.largeInput} value={values.subject} 
                   onChange={handleChange} required></input>
-              <label className={mitrR.className}>message</label>
+              <label className={mitrR.className}>{traducao.message}</label>
               <textarea name='message' className={styles.textAreaContact} value={values.message} 
                   onChange={handleChange} required></textarea>
-              <button  className={styles.btnSend} onClick={onSubmit} type="submit">submit</button>
+              <button  className={styles.btnSend} onClick={onSubmit} type="submit">{traducao.submit}</button>
             </form>
           </div>
           <div data-aos="fade-left" className={styles.rightContact}>
