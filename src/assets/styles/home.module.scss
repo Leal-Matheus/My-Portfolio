@@ -1,13 +1,12 @@
 @import "mixins";
 
-$primary-color: #527CFF;
+$primary-color: #527cff;
 $secondary-color: #fff;
 $tertiary-color: rgba(#000, 0.4);
 $background-color: #1d1d1d;
 
 $dropdown-color: $secondary-color;
 $dropdown-bg: $background-color;
-
 
 .container {
     width: 70vw;
@@ -26,45 +25,51 @@ $dropdown-bg: $background-color;
     background-color: $background-color;
     position: fixed;
     top: 0;
-    .boxHeader{
+    z-index: 100;
+    .boxHeader {
         @include flex-center;
         justify-content: space-between;
 
         .logoHeader {
-        // -webkit-filter:grayscale(0%);
-        transition: 1s;
-
-        &:hover {
-            animation: rotate 0.7s ease-in-out both;
-        }
-    }
-
-    .navHeader {
-        @include flex-center;
-        gap: 4rem;
-
-        .linkHeader {
-            text-decoration: none;
-            font-size: 1rem;
-            text-transform: capitalize;
-            color: $primary-color;
-            transition: 0.7s ease-in;
+            // -webkit-filter:grayscale(0%);
+            transition: 1s;
 
             &:hover {
-                transition: 0.7s;
-                color: #fff;
+                animation: rotate 0.7s ease-in-out both;
             }
         }
-        a{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none
+
+        .navHeader {
+            @include flex-center;
+            gap: 4rem;
+
+            .linkHeader {
+                text-decoration: none;
+                font-size: 1rem;
+                text-transform: capitalize;
+                color: $primary-color;
+                transition: 0.7s ease-in;
+
+                &:hover {
+                    transition: 0.7s;
+                    color: #fff;
+                }
+            }
+            a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+            }
+            img {
+                display: flex;
+                &:hover {
+                    transition: 0.7s;
+                    color: #fff;
+                }
+            }
         }
     }
-
-    }
-    
 }
 @keyframes rotate {
     0% {
@@ -103,7 +108,7 @@ $dropdown-bg: $background-color;
 .main {
     @include flex-center-column;
     margin-top: 15.2vh;
-    
+
     .introSection {
         @include flex-center-column;
         justify-content: space-between;
@@ -115,11 +120,11 @@ $dropdown-bg: $background-color;
             top: 100px;
             left: 0px;
         }
-        a{
+        a {
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none
+            text-decoration: none;
         }
         .boxTop {
             @include flex-center-column;
@@ -144,40 +149,38 @@ $dropdown-bg: $background-color;
         }
     }
 
-    .aboutMeSection{
+    .aboutMeSection {
         display: flex;
         justify-content: space-between;
         margin-bottom: 12.5rem;
 
-        .aboutLeft{
+        .aboutLeft {
             @include flex-column;
             justify-content: flex-start;
             width: 33%;
             // align-items: start;
-            .paragraphAbout{
+            .paragraphAbout {
                 font-size: 1.25rem;
                 color: $secondary-color;
                 text-align: justify;
                 margin-top: 1rem;
             }
-            
         }
     }
-    .projectsSection{
+    .projectsSection {
         @include flex-center-column;
         justify-content: space-between;
         align-items: unset;
         width: 100%;
         margin-bottom: 12.5rem;
 
-
-        .backTextProject{
+        .backTextProject {
             @include backText;
             right: 0;
             top: 2200px;
         }
-        .textsProjects{
-            p{
+        .textsProjects {
+            p {
                 font-size: 1.25rem;
                 color: $secondary-color;
                 text-align: justify;
@@ -185,13 +188,13 @@ $dropdown-bg: $background-color;
                 width: 30%;
             }
         }
-        .myProjects{
+        .myProjects {
             @include flex-center;
             justify-content: space-between;
             margin-top: 3rem;
             width: 100%;
 
-            .cardProject{
+            .cardProject {
                 height: 30rem;
                 width: 21.25rem;
                 border: 10px solid $background-color;
@@ -201,31 +204,28 @@ $dropdown-bg: $background-color;
                 background-size: cover;
                 background-repeat: no-repeat;
                 margin-bottom: 4rem;
-                
             }
         }
-        
-
     }
-    .contactSection{
+    .contactSection {
         display: flex;
         justify-content: space-between;
         width: 100%;
         margin-bottom: 12.5rem;
 
-        .leftContact{
+        .leftContact {
             display: flex;
             flex-direction: column;
-            
-            .titleContact{
+
+            .titleContact {
                 margin-bottom: 7rem;
             }
-            .formArea{
+            .formArea {
                 display: flex;
                 flex-direction: column;
                 width: 46.5rem;
-                
-                input{
+
+                input {
                     height: 3.5rem;
                     padding-left: 2rem;
                     margin-bottom: 2rem;
@@ -236,16 +236,15 @@ $dropdown-bg: $background-color;
                     color: $secondary-color;
                     border: none;
                     outline: none;
-                    
                 }
-                label{
+                label {
                     color: $primary-color;
                     font-size: 1rem;
                     margin-bottom: 0.5rem;
                     margin-left: 2rem;
                     text-transform: capitalize;
                 }
-                textArea{
+                textArea {
                     @include border-radius;
                     background-color: rgba(0, 0, 0, 0.4);
                     color: $secondary-color;
@@ -255,88 +254,144 @@ $dropdown-bg: $background-color;
                     margin-bottom: 2rem;
                     padding: 1rem 2rem;
                 }
-                button{
+                button {
                     @include defaultButton;
                     width: 12.5rem;
                 }
-                .nameEmail{
+                .nameEmail {
                     display: flex;
                     justify-content: space-between;
                     width: 100%;
-                    
-                    .orgInput{
+
+                    .orgInput {
                         display: flex;
                         flex-direction: column;
                     }
-                    .smallInput{
+                    .smallInput {
                         width: 21.25rem;
                     }
                 }
-
             }
         }
-        .rightContact{
+        .rightContact {
             display: flex;
             flex-direction: column;
             padding-top: 7rem;
             position: relative;
 
-            .bottomLinkedin{
-                position:absolute;
+            .bottomLinkedin {
+                position: absolute;
                 top: 37.5vh;
                 right: 0;
                 opacity: 1;
                 transition: 0.7s ease-in;
 
-                
-                
-                &:hover{
+                &:hover {
                     opacity: 0;
                 }
             }
-            .topLinkedin{
-                position:absolute;
+            .topLinkedin {
+                position: absolute;
                 top: 37.5vh;
                 right: 0;
                 opacity: 0;
                 transition: 0.7s ease-in;
 
-                
-                &:hover{
+                &:hover {
                     opacity: 1;
                 }
             }
-            .bottomGithub{
-                position:absolute;
+            .bottomGithub {
+                position: absolute;
                 top: 10.5vh;
                 right: 0;
                 opacity: 1;
                 transition: 0.5s ease-in;
 
-                
-                
-                &:hover{
+                &:hover {
                     opacity: 0;
                 }
             }
-            .topGithub{
-                position:absolute;
+            .topGithub {
+                position: absolute;
                 top: 10.5vh;
                 right: 0;
                 opacity: 0;
                 transition: 0.5s ease-in;
 
-                
-                &:hover{
+                &:hover {
                     opacity: 1;
                 }
             }
-            img{
+            img {
                 height: 16rem;
                 width: 16rem;
-
             }
         }
     }
+}
 
+@media only screen and (max-width: 1440px) {
+    .formArea {
+        display: flex;
+        input {
+            width: 80%;
+        }
+        textarea {
+            width: 80%;
+        }
+        .nameEmail {
+            width: 80% !important;
+            gap: 1rem;
+
+            .smallInput {
+                width: 18.25rem !important;
+                
+            }
+        }
+    }
+    .backLanguages{
+        display: none;
+    }
+    .backTextAbout{
+        display: none;
+    }
+    .backTextContact{
+        display: none;
+    }
+    .backTextProject{
+        display: none;
+    }
+    .backTextWeb{
+        display: none;
+    }
+    .bottomGithub{
+        display: none;
+    }
+    .bottomLinkedin{
+        display: none;
+    }
+    .topGithub{
+        display: none;
+    }
+    .topLinkedin{
+        display: none;
+    }
+    // .aboutRight{
+    //     display: none;
+    // }
+}
+@media only screen and (max-width: 768px) {
+    .formArea{
+        display: flex;
+
+        .nameEmail{
+            display: flex;
+            flex-direction: column;
+
+            .smallInput{
+                width: 100% !important;
+            }
+        }
+    }
 }

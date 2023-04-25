@@ -14,7 +14,8 @@ const TextShpere = () => {
   // Animation settings for Text Cloud
   useEffect(() => {
     return () => {
-      const container = ".tagcloud";
+      const container = '.tagcloud';
+      let radii;
       const texts = [
         'JavaScript', 
         'CSS', 
@@ -31,14 +32,23 @@ const TextShpere = () => {
         '.NET',
         'NextJs',
       ];
-
+  
+      function radiusValue() {
+        if (window.screen.width <= 778) {
+          radii = 150;
+        } else {
+          radii = 350;
+        }
+        return radii;
+      }
+  
       const options = {
-        radius: 350,
-        maxSpeed: "normal",
-        initSpeed: "normal",
+        radius: radiusValue(),
+        maxSpeed: 'normal',
+        initSpeed: 'normal',
         keep: true,
       };
-
+  
       TagCloud(container, texts, options);
     };
   }, []);
