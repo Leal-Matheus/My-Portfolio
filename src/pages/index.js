@@ -20,6 +20,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'react-toastify/dist/ReactToastify.css';
+import Hamburguer from '@/components/Hamburguer';
 
 const mitrR = Mitr({
   weight: "400",
@@ -190,7 +191,12 @@ const onSubmit = async () => {
         <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=10, minimum-scale=1.0" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header/>
+      <div className={styles.headerNormal}>
+        <Header/>
+      </div>
+      <div className={styles.headerHamburguer}>
+        <Hamburguer/>
+      </div>
       <p onClick={handleToggle} className={`${styles.backTextWeb} ${mitrSB.className}`}>web developer</p>
       <main className={`${styles.main} ${styles.container} 'scrollspy-example'`} data-bs-spy="scroll" data-bs-target="#redirect"
         data-bs-offset="0" data-bs-smooth-scroll="true" tabIndex="0" >

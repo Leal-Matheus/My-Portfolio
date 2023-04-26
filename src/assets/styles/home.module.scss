@@ -17,6 +17,9 @@ $dropdown-bg: $background-color;
 .defaultBtn {
     @include defaultButton;
 }
+.headerHamburguer{
+    display: none
+}
 
 #header {
     @include flex-center;
@@ -381,7 +384,53 @@ $dropdown-bg: $background-color;
     //     display: none;
     // }
 }
+@media only screen and (max-width: 1024px) {
+    .aboutMeSection{
+        flex-direction: column;
+        .aboutLeft{
+            width: 100% !important;
+        }
+    }
+
+
+    .textsProjects{
+        p {
+            width: 100% !important;
+        }
+    }
+
+}
 @media only screen and (max-width: 768px) {
+    .headerNormal{
+        display: none;
+    }
+    .headerHamburguer{
+        display: block;
+    }
+    .navHeader{
+        gap: 3rem !important;
+    }
+    .introSection{
+        height: 75vh !important;
+        h1{
+            font-size: 2.5rem !important;
+            text-align: center;
+        }
+        p{
+            text-align: center;
+        }
+    }
+
+    .aboutRight{
+        display: none;
+    }
+    .myProjects{
+        flex-direction: column;
+        .cardProject{
+            width: 100% !important;
+            background-position: center;
+        }
+    }
     .formArea{
         display: flex;
 
@@ -392,6 +441,26 @@ $dropdown-bg: $background-color;
             .smallInput{
                 width: 100% !important;
             }
+        }
+    }
+}
+@media only screen and (max-width: 425px) {
+    .cardProject{
+        display: none;
+    }
+    .formArea{
+        width: 100% !important;
+        .nameEmail{
+            width: 100% !important;
+            .smallInput{
+                width: 100% !important;
+            }
+        }
+        input{
+            width: 100% !important;
+        }
+        textarea{
+            width: 100% !important;
         }
     }
 }
