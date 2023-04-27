@@ -26,7 +26,7 @@ const ptBR = {
 
 }
 
-export default function Home() {
+export default function Header() {
   const router = useRouter();
   const { locale } = useRouter();
   const traducao = locale == "en-US" ? enUS : ptBR

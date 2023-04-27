@@ -20,7 +20,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'react-toastify/dist/ReactToastify.css';
-import Hamburguer from '@/components/Hamburguer';
+import Nav from '@/components/TabNavigation';
 
 const mitrR = Mitr({
   weight: "400",
@@ -194,8 +194,8 @@ const onSubmit = async () => {
       <div className={styles.headerNormal}>
         <Header/>
       </div>
-      <div className={styles.headerHamburguer}>
-        <Hamburguer/>
+      <div className={styles.navBar}>
+        <Nav/>
       </div>
       <p onClick={handleToggle} className={`${styles.backTextWeb} ${mitrSB.className}`}>web developer</p>
       <main className={`${styles.main} ${styles.container} 'scrollspy-example'`} data-bs-spy="scroll" data-bs-target="#redirect"
@@ -232,8 +232,9 @@ const onSubmit = async () => {
             </h2>
             <p className={`${styles.paragraphAbout} ${mitrR.className}`}>{traducao.textAbout1}</p>
             <p className={`${styles.paragraphAbout} ${mitrR.className}`}>{traducao.textAbout2}</p>
+            <Link href='about' data-aos="fade-up" className={`${styles.defaultBtn} ${styles.btnRedirect} ${mitrR.className}`}>{traducao.see}</Link>
           </div>
-          <div data-aos="fade-left  " className={styles.aboutRight}>
+          <div data-aos="fade-left" className={styles.aboutRight}>
             <TextShpere />
           </div>
         </section>
@@ -242,6 +243,7 @@ const onSubmit = async () => {
           <div data-aos="fade-right" className={styles.textsProjects}>
             <h2 className={`${styles.titleProject} ${montserratH2.className}`}>{traducao.project}</h2>
             <p className={`${styles.paragraphProjects} ${mitrR.className}`}>{traducao.projectText}</p>
+            <Link href='projects' data-aos="fade-right" className={`${styles.defaultBtn} ${styles.btnRedirect} ${mitrR.className}`}>{traducao.see}</Link>
           </div>
           <div data-aos="fade-up"className={styles.myProjects}>
             <div className={styles.cardProject}>

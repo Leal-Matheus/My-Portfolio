@@ -17,7 +17,10 @@ $dropdown-bg: $background-color;
 .defaultBtn {
     @include defaultButton;
 }
-.headerHamburguer{
+.btnRedirect{
+    display: none;
+}
+.navBar{
     display: none
 }
 
@@ -401,12 +404,57 @@ $dropdown-bg: $background-color;
 
 }
 @media only screen and (max-width: 768px) {
+    .main{
+        margin-top: 10vh;
+    }
+    .btnRedirect{
+        display: flex;
+    }
     .headerNormal{
         display: none;
     }
-    .headerHamburguer{
+    .navBar{
         display: block;
+        position: relative;
+
+        .tabNavigation{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: calc(100vh - 100px);
+            width: 100%;
+            height: 100px;
+            padding: 0 15vw;
+            background-color: $background-color;
+            box-shadow: 0px -2px 10px 0px rgba(0,0,0,0.2);
+            .columnNav{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                .iconNav{
+                    height: 2rem;
+                    width: 2rem;
+                }
+                .linkBar{
+                    text-decoration: none;
+                    font-size: 1rem;
+                    text-transform: capitalize;
+                    color: $primary-color;
+                    transition: 0.7s ease-in;
+    
+                    &:hover {
+                        transition: 0.7s;
+                        color: #fff;
+                    }
+                }
+            }
+
+        }   
     }
+
     .navHeader{
         gap: 3rem !important;
     }
@@ -445,6 +493,13 @@ $dropdown-bg: $background-color;
     }
 }
 @media only screen and (max-width: 425px) {
+    .iconNav{
+        height: 1.5rem !important;
+        width: 1.5rem !important;
+    }
+    .linkBar{
+        font-size: 0.7rem !important;
+    }
     .cardProject{
         display: none;
     }

@@ -45,8 +45,13 @@
     background-color: transparent;
     color: $primary-color;
     text-transform: capitalize;
+    text-decoration: none;
     font-size: 1rem;
     border: 1px solid $primary-color;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     cursor: pointer;
     transition: 0.7s;
