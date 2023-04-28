@@ -33,7 +33,7 @@ export default function Header() {
   return (
     <header id={styles.header}>
       <div className={`${styles.container} ${styles.boxHeader}`}>
-      <Image src={Logo} className={styles.logoHeader} alt='Logo'/>
+      <Link href="/"><Image src={Logo} className={styles.logoHeader} alt='Logo'/></Link>
         <nav className={styles.navHeader}>
             <Link className={`${styles.linkHeader} ${mitrR.className}`} href='#scroll1'>{traducao.aboutMe}</Link>
             <Link className={`${styles.linkHeader} ${mitrR.className}`} href='#scroll2'>portfolio</Link>

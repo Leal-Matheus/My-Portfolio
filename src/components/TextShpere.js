@@ -13,6 +13,7 @@ import { La_Belle_Aurore } from "next/font/google";
 const TextShpere = () => {
   // Animation settings for Text Cloud
   useEffect(() => {
+    // return () => {
       const container = '.tagcloud';
       let radii;
       const texts = [
@@ -49,6 +50,7 @@ const TextShpere = () => {
       };
   
       TagCloud(container, texts, options);
+    // }
   }, []);
 
   return (
