@@ -470,7 +470,6 @@ $dropdown-bg: $background-color;
         }
     }
     .aboutMeSection{
-        margin-bottom: 0 !important;
         .backTextPageAbout{
             font-size: 8.6rem;
         }
@@ -481,9 +480,9 @@ $dropdown-bg: $background-color;
         }
     }
 
-    .aboutRight {
-        display: none;
-    }
+    // .aboutRight {
+    //     display: none;
+    // }
     .myProjects {
         flex-direction: column;
         .cardProject {
@@ -504,7 +503,7 @@ $dropdown-bg: $background-color;
         }
     }
 }
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 435px) {
     .iconNav {
         height: 1.5rem !important;
         width: 1.5rem !important;
@@ -512,6 +511,7 @@ $dropdown-bg: $background-color;
     .linkBar {
         font-size: 0.7rem !important;
     }
+    
     .cardProject {
         display: none;
     }

@@ -264,7 +264,7 @@ const onSubmit = async () => {
             <form id="formEmail" className={styles.formArea}>
               <div className={styles.nameEmail}>
                 <div className={styles.orgInput}>
-                  <label className={mitrR.className}>{traducao.name}</label>
+                  <label for='name' className={mitrR.className}>{traducao.name}</label>
                   <input 
                   type="text" 
                   name='name' 
@@ -273,15 +273,15 @@ const onSubmit = async () => {
                   onChange={handleChange} required></input>
                 </div>
                 <div className={styles.orgInput}>
-                  <label className={mitrR.className}>email</label>
+                  <label for='email' className={mitrR.className}>email</label>
                   <input type="email" name='email' className={styles.smallInput} value={values.email} 
                   onChange={handleChange} required></input>
                 </div>
               </div>
-              <label className={mitrR.className}>{traducao.subject}</label>
+              <label for='subject' className={mitrR.className}>{traducao.subject}</label>
               <input type="text" name='subject' className={styles.largeInput} value={values.subject} 
                   onChange={handleChange} required></input>
-              <label className={mitrR.className}>{traducao.message}</label>
+              <label for='message' className={mitrR.className}>{traducao.message}</label>
               <textarea name='message' className={styles.textAreaContact} value={values.message} 
                   onChange={handleChange} required></textarea>
               <button className={styles.btnSend} onClick={onSubmit} type="submit">{traducao.submit}</button>

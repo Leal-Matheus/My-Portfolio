@@ -35,7 +35,7 @@ const TextShpere = () => {
   
       function radiusValue() {
         if (window.screen.width <= 1024) {
-          radii = 200;
+          radii = 150;
         } else {
           radii = 350;
         }

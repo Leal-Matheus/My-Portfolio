@@ -67,7 +67,7 @@ export default function About() {
                 <Nav />
             </div>
             <main className={`${styles.main} ${styles.container}`} >
-                <section className={`${styles.aboutMeSection} ${styles.anime}`} id='scroll1'>
+                <section className={`${styles.aboutMeSection} ${styles.anime} ${styles.removeMargin}`} id='scroll1' style={{marginBottom: 0}}>
                     <p className={`${styles.backTextPageAbout} ${mitrSB.className}`}> {traducao.about} </p>
                     <div data-aos="fade-up" className={styles.aboutLeft}>
                         <h2 className={`${styles.titleAbout} ${montserratH2.className}`}>
